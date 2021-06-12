@@ -1,0 +1,15 @@
+API Keys
+
+If you do not have a basic authentication API key, or if you lost the password, you can generate new key and password pairs on this page or remove unused keys.
+Name 	API Key 	 
+New API Key 	141180ec-9973-42e3-8186-7b08a4b4531b 	
+Generated New API Key
+
+API Key 
+141180ec-9973-42e3-8186-7b08a4b4531b
+
+API Password
+67a434cb-c157-4809-a415-c5c9d1d7701a
+
+
+Retain this password for your records. You cannot request the password again.
