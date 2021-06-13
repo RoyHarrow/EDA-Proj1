@@ -17,73 +17,51 @@
 #
 #
 from geoip import geolite2
-match = geolite2.lookup('17.0.0.1')
-# match is not None
-# True
-print("match.country:",      match.country)
-print("match.continent:",    match.continent)
-print("match.timezone:",     match.timezone)
-print("match.subdivisions:", match.subdivisions)
+import ipaddress
+# 147.229.2.90   or 17.0.0.1
+#
+dbinfo = geolite2.get_info()
+print("dbinfo:", dbinfo)
+#
+input("Wait until key pressed")
+#
+ipaddr = ipaddress.ip_address("147.229.2.90")
+print(ipaddr)
+print(type(ipaddr))
+match = geolite2.lookup(ipaddr)
+#
+print("Before Try")
+try:
+    print("Before Lookup in Try")
+    ipaddr = ipaddress.ip_address("147.229.2.90")
+    print(ipaddr)
+    print(type(ipaddr))
+    match = geolite2.lookup(ipaddr)
+    if match == None:
+        print("IP address lookup returned NONE")
+    else:
+        print("IP address lookup returned a MATCH")
+    #
+    print("After lookup")
+except Exception as inst:
+    print("Error found :", inst)
+else:
+    print("match.country:",      match.country)
+    print("match.continent:",    match.continent)
+    print("match.timezone:",     match.timezone)
+    print("match.subdivisions:", match.subdivisions)
 #                                                                                                                                                                                                                                                                                                                                                                         
-#frozenset(['CA'])
 #
-#
+input("Press enter to continue")
 #
 # If you want to use your own MaxMind database
 # (for instance because you paid for the commercial version)
 # you can open the database yourself:
 #
+from geoip import open_database
 with open_database('data/GeoLite2-City.mmdb') as db:
     match = db.lookup_mine()
-    print 'My IP info:', match
-#
-# Geolite - https://dev.maxmind.com/geoip#geolite-databases-and-services
-#
-
-#
-from ip2geotools.databases.noncommercial import DbIpCity
-ipAddr = "147.229.2.90"
-#ipAddr = "253.253.253.253"
-#ipAddr = "2001:4451:446d:3300:7085:c68a:2252:bbb1"
-try:
-    response = DbIpCity.get(ipAddr, api_key='free')
-except Exception as inst:
-    print("Error found :", inst)
-else:
-    print ("response.ip_address:", response.ip_address)
-    print ("response.city:",       response.city )
-    print("response.region:",      response.region )
-    print("response.country:",     response.country )
-    print("response.latitude:",    response.latitude )
-    print("response.longitude:",   response.longitude )
-    # print("response.to_json():,    response.to_json() )
-    # print("response.to_xml():",    response.to_xml() )
-#
-print("End")
-#
-#
-#     https://pypi.org/project/ip2geotools/
-#
-#     $ pip3 install requests --upgrade
-#     $ pip3 install ip2geotools
-#
-from ip2geotools.databases.noncommercial import DbIpCity
-ipAddr = "147.229.2.90"
-#ipAddr = "253.253.253.253"
-#ipAddr = "2001:4451:446d:3300:7085:c68a:2252:bbb1"
-try:
-    response = DbIpCity.get(ipAddr, api_key='free')
-except Exception as inst:
-    print("Error found :", inst)
-else:
-    print ("response.ip_address:", response.ip_address)
-    print ("response.city:",       response.city )
-    print("response.region:",      response.region )
-    print("response.country:",     response.country )
-    print("response.latitude:",    response.latitude )
-    print("response.longitude:",   response.longitude )
-    # print("response.to_json():,    response.to_json() )
-    # print("response.to_xml():",    response.to_xml() )
+    print ('My IP info:', match.country)
 #
 print("End")
 #
