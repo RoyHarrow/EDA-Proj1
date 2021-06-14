@@ -141,7 +141,7 @@ import pandas as pd
 print ("Reading a CSV file into a Data Frame")
 #
 csv_path = "Combined_Subset.csv"
-# csv_path = "Combined.csv"
+csv_path = "Combined.csv"
 #
 # Using Data Frames
 #
@@ -228,7 +228,8 @@ print("csvDF       = \n", csvDF       )
 # Write updated file out from Pandas Dataframe
 #
 out_path = "Combined_Subset2.csv"
-# out_path = "Combined_Data.csv"
+out_path = "Combined_Data.csv"
+#
 #
 csvDF.to_csv(out_path,index=False)
 #
